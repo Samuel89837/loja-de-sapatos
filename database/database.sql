@@ -99,3 +99,15 @@ CREATE TABLE itens_encomenda (
     FOREIGN KEY (encomenda_id) REFERENCES encomendas(id) ON DELETE CASCADE,
     FOREIGN KEY (produto_id) REFERENCES produtos(id) ON DELETE SET NULL
 );
+
+
+
+CREATE TABLE notificacoes (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    utilizador_id INT,
+    tipo VARCHAR(100) NOT NULL,
+    conteudo VARCHAR(2000),
+    lida BIT NOT NULL DEFAULT 0,
+    criado_em DATETIME NOT NULL DEFAULT GETDATE(),
+    FOREIGN KEY (utilizador_id) REFERENCES utilizadores(id) ON DELETE CASCADE
+);
