@@ -49,3 +49,15 @@ CREATE TABLE categorias (
     descricao VARCHAR(500),
     criado_em DATETIME NOT NULL DEFAULT GETDATE()
 );
+
+
+CREATE TABLE itens_carrinho (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    utilizador_id INT NOT NULL,
+    produto_id INT NOT NULL,
+    quantidade INT NOT NULL CHECK (quantidade > 0),
+    adicionado_em DATETIME NOT NULL DEFAULT GETDATE(),
+    UNIQUE (utilizador_id, produto_id),
+    FOREIGN KEY (utilizador_id) REFERENCES utilizadores(id) ON DELETE CASCADE,
+    FOREIGN KEY (produto_id) REFERENCES produtos(id) ON DELETE CASCADE
+);
