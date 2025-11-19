@@ -43,3 +43,7 @@ def menu_cliente():
 
     def adicionar_ao_carrinho():
         print(" Produto adicionado ao carrinho!")
+
+
+    def ver_carrinho():
+        print(" Exibindo itens do carrinho...")
