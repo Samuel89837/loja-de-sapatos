@@ -111,3 +111,17 @@ CREATE TABLE notificacoes (
     criado_em DATETIME NOT NULL DEFAULT GETDATE(),
     FOREIGN KEY (utilizador_id) REFERENCES utilizadores(id) ON DELETE CASCADE
 );
+
+
+
+CREATE TABLE historico_produtos (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    produto_id INT NULL,
+    acao VARCHAR(100) NOT NULL,
+    alterado_por INT NULL,
+    valores_antigos VARCHAR(2000),
+    valores_novos VARCHAR(2000),
+    criado_em DATETIME NOT NULL DEFAULT GETDATE(),
+    FOREIGN KEY (produto_id) REFERENCES produtos(id) ON DELETE SET NULL,
+    FOREIGN KEY (alterado_por) REFERENCES utilizadores(id) ON DELETE SET NULL
+);
