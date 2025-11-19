@@ -9,3 +9,27 @@ def menu_cliente():
         print("6 - Finalizar compra")
         print("0 - Voltar")
         opcao = input("Escolha: ")
+
+        if opcao == "1":
+            ver_catalogo()
+
+        elif opcao == "2":
+            adicionar_ao_carrinho()
+
+        elif opcao == "3":
+            ver_carrinho()
+
+        elif opcao == "4":
+            remover_do_carrinho()
+
+        elif opcao == "5":
+            filtrar_produtos()
+
+        elif opcao == "6":
+            finalizar_compra()
+
+        elif opcao == "0":
+            break
+
+        else:
+            print("Opção inválida! Tente novamente.")
