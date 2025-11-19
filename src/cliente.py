@@ -51,3 +51,7 @@ def menu_cliente():
     
     def remover_do_carrinho():
         print(" Produto removido do carrinho!")
+
+
+    def filtrar_produtos():
+        print(" Filtrando produtos por preço...")
