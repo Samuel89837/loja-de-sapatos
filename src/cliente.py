@@ -39,3 +39,7 @@ def menu_cliente():
 
     def ver_catalogo():
         print(" Exibindo catálogo de produtos...")
+
+
+    def adicionar_ao_carrinho():
+        print(" Produto adicionado ao carrinho!")
