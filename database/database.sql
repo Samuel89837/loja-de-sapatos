@@ -87,3 +87,15 @@ BEGIN
     SET atualizado_em = GETDATE()
     WHERE id IN (SELECT id FROM inserted);
 END;
+
+
+
+CREATE TABLE itens_encomenda (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    encomenda_id INT NOT NULL,
+    produto_id INT NULL,
+    quantidade INT NOT NULL CHECK (quantidade > 0),
+    preco_unit_cents INT NOT NULL,
+    FOREIGN KEY (encomenda_id) REFERENCES encomendas(id) ON DELETE CASCADE,
+    FOREIGN KEY (produto_id) REFERENCES produtos(id) ON DELETE SET NULL
+);
