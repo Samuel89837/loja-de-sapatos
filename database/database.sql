@@ -125,3 +125,9 @@ CREATE TABLE historico_produtos (
     FOREIGN KEY (produto_id) REFERENCES produtos(id) ON DELETE SET NULL,
     FOREIGN KEY (alterado_por) REFERENCES utilizadores(id) ON DELETE SET NULL
 );
+
+
+CREATE TABLE configuracoes (
+    chave VARCHAR(255) PRIMARY KEY,
+    valor VARCHAR(2000)
+);
