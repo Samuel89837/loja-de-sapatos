@@ -33,3 +33,9 @@ def menu_cliente():
 
         else:
             print("Opção inválida! Tente novamente.")
+
+
+
+
+    def ver_catalogo():
+        print(" Exibindo catálogo de produtos...")
