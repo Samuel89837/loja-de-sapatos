@@ -19,3 +19,14 @@ CREATE TABLE produtos (
     atualizado_em DATETIME NOT NULL DEFAULT GETDATE(),
     FOREIGN KEY (categoria_id) REFERENCES categorias(id)
 );
+
+
+CREATE TRIGGER trg_produtos_update
+ON produtos
+AFTER UPDATE
+AS
+BEGIN
+    UPDATE produtos 
+    SET atualizado_em = GETDATE()
+    WHERE id IN (SELECT id FROM inserted);
+END;
