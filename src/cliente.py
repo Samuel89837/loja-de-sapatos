@@ -47,3 +47,7 @@ def menu_cliente():
 
     def ver_carrinho():
         print(" Exibindo itens do carrinho...")
+
+    
+    def remover_do_carrinho():
+        print(" Produto removido do carrinho!")
