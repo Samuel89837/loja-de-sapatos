@@ -30,3 +30,14 @@ BEGIN
     SET atualizado_em = GETDATE()
     WHERE id IN (SELECT id FROM inserted);
 END;
+
+
+CREATE TABLE imagens_produtos (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    produto_id INT NOT NULL,
+    url VARCHAR(500) NOT NULL,
+    alt VARCHAR(500),
+    principal BIT NOT NULL DEFAULT 0,
+    criado_em DATETIME NOT NULL DEFAULT GETDATE(),
+    FOREIGN KEY (produto_id) REFERENCES produtos(id) ON DELETE CASCADE
+);
