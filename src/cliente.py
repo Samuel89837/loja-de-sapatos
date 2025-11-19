@@ -55,3 +55,7 @@ def menu_cliente():
 
     def filtrar_produtos():
         print(" Filtrando produtos por preço...")
+
+    
+    def finalizar_compra():
+        print(" Compra finalizada com sucesso!")
