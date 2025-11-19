@@ -1,0 +1,1 @@
+Criei um repositório para a loja de sapatos
