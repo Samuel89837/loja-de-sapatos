@@ -303,7 +303,7 @@ def total_carrinho():
     con.close()
 
 
-def finalizar_compra(uid):
+def finalizar_compra():
     con = conectar()
     cur = con.cursor()
 
@@ -312,8 +312,8 @@ def finalizar_compra(uid):
         SELECT SUM(quantidade * preco_cents)
         FROM itens_carrinho i
         JOIN produtos p ON p.id = i.produto_id
-        WHERE i.utilizador_id = ?
-    """, (uid,))
+        WHERE i.utilizador_id = 1
+    """)
 
     total = cur.fetchone()[0]
 
@@ -324,8 +324,8 @@ def finalizar_compra(uid):
     # criar encomenda
     cur.execute("""
         INSERT INTO encomendas (utilizador_id, estado, total_cents)
-        VALUES (?, 'pendente', ?)
-    """, (uid, total))
+        VALUES (1, 'pendente', ?)
+    """, (total,))
 
     encomenda_id = cur.lastrowid
 
@@ -335,11 +335,11 @@ def finalizar_compra(uid):
         SELECT ?, produto_id, quantidade, preco_cents
         FROM itens_carrinho
         JOIN produtos ON produtos.id = itens_carrinho.produto_id
-        WHERE utilizador_id = ?
-    """, (encomenda_id, uid))
+        WHERE utilizador_id = 1
+    """, (encomenda_id,))
 
     # limpar carrinho
-    cur.execute("DELETE FROM itens_carrinho WHERE utilizador_id = ?", (uid,))
+    cur.execute("DELETE FROM itens_carrinho WHERE utilizador_id = 1")
     con.commit()
 
     print(f"Compra finalizada! Encomenda #{encomenda_id}")
