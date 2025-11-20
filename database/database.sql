@@ -181,3 +181,10 @@ INSERT INTO notificacoes (utilizador_id, tipo, conteudo)
 VALUES
 (1, 'Encomenda', 'A sua encomenda #1 foi recebida.'),
 (1, 'Promoção', 'Novo desconto disponível em sapatos! 20% OFF.');
+
+
+INSERT INTO historico_produtos (produto_id, acao, alterado_por, valores_antigos, valores_novos)
+VALUES
+(1, 'Atualização de preço', 2, 'preco = 3999', 'preco = 4999'),
+(2, 'Alteração de stock', 2, 'stock = 10', 'stock = 15');
+
