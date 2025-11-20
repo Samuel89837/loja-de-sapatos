@@ -234,8 +234,20 @@ def menu_cliente():
 
 
 
-    def remover_do_carrinho():
-        print(" Produto removido do carrinho!")
+    def remover_do_carrinho(uid):
+        pid = input("ID do produto para remover: ")
+
+        con = conectar()
+        cur = con.cursor()
+
+        cur.execute("DELETE FROM itens_carrinho WHERE utilizador_id = ? AND produto_id = ?", (uid, pid))
+        con.commit()
+
+        print("Removido!")
+        con.close()
+
+    
+
 
 
     def filtrar_produtos():
