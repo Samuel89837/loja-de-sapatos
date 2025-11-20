@@ -155,3 +155,10 @@ INSERT INTO imagens_produtos (produto_id, url, alt, principal)
 VALUES
 (1, 'https://www.nike.com/pt/t/sapatilhas-air-force-1-07-E5NnNyBr/CW2288-111', 'Nike Air Vista Lateral', 1),
 (2, 'https://www.jdsports.pt/product/castanho-birkenstock-sandlias-arizona-eva-mulher/771573_jdsportspt/', 'Sandália elegante dourada', 1);
+
+
+
+INSERT INTO itens_carrinho (utilizador_id, produto_id, quantidade)
+VALUES
+(1, 1, 1),
+(1, 2, 2);
