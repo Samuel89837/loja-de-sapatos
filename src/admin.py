@@ -146,11 +146,23 @@ def remover_produto():
     con = conectar()
     cur = con.cursor()
 
+    # Verificar se o ID existe
+    cur.execute("SELECT titulo FROM produtos WHERE id = ?", (pid,))
+    produto = cur.fetchone()
+
+    if not produto:
+        print(f" O produto com ID {pid} não existe ou já foi removido!")
+        con.close()
+        return
+
+    nome = produto[0]
+
+    # Remover o produto
     cur.execute("DELETE FROM produtos WHERE id = ?", (pid,))
     con.commit()
 
-    print("Produto removido com sucesso!")
-    con.close()
+    print(f" Produto '{nome}' removido com sucesso!")
+    con.close() 
 
 
 
@@ -331,3 +343,6 @@ def gerir_utilizadores():
         print(f"{u[0]} | {u[1]} | {u[2]}")
 
     con.close()
+
+
+
