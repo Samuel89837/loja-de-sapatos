@@ -374,6 +374,18 @@ def adicionar_categoria():
 #TOTAL DO STOCK
 #==========================================
 def total_stock():
+
+    """
+    Calcula o total de unidades em stock.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
+
+
     con = conectar()
     cur = con.cursor()
 
