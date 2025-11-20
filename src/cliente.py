@@ -78,9 +78,11 @@ def ver_catalogo():
 
     print("\n===== CATÁLOGO =====")
     for p in produtos:
-        print(f"ID: {p[0]} | {p[1]} | {p[2]/100:.2f}€ | Stock: {p[3]}")
+        status = "ESGOTADO" if p[3] == 0 else f"Stock: {p[3]}"
+        print(f"ID: {p[0]} | {p[1]} | {p[2]/100:.2f}€ | {status}")
 
     con.close()
+
 
 
 def procurar_produto():
