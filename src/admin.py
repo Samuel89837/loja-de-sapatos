@@ -96,7 +96,7 @@ def adicionar_produto():
     con.close()
 
 
-    # ==========================================
+# ==========================================
 #   EDITAR PRODUTO
 # ==========================================
 def editar_produto():
@@ -137,7 +137,7 @@ def editar_produto():
 
 
 
-    # ==========================================
+# ==========================================
 #   REMOVER PRODUTO
 # ==========================================
 def remover_produto():
@@ -155,7 +155,7 @@ def remover_produto():
 
 
 
-   # ==========================================
+# ==========================================
 #   LISTAR PRODUTOS
 # ==========================================
 def listar_produtos():
@@ -174,7 +174,7 @@ def listar_produtos():
 
 
 
-    # ==========================================
+# ==========================================
 #   VER NOTIFICAÇÕES (ENCOMENDAS PENDENTES)
 # ==========================================
 def ver_notificacoes():
@@ -221,4 +221,22 @@ def ativar_desativar_produto():
     con.commit()
 
     print("Produto atualizado com sucesso!")
+    con.close()
+
+
+
+#==========================================
+#ADICIONAR CATEGORIA
+#==========================================
+def adicionar_categoria():
+    nome = input("\nNome da categoria: ")
+    desc = input("Descrição: ")
+
+    con = conectar()
+    cur = con.cursor()
+
+    cur.execute("INSERT INTO categorias (nome, descricao) VALUES (?, ?)", (nome, desc))
+    con.commit()
+
+    print("Categoria adicionada!")
     con.close()
