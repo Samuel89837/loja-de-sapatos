@@ -171,3 +171,30 @@ def listar_produtos():
         print(f"{p[0]} | {p[1]} | {p[2]/100:.2f}€ | Stock: {p[3]} | {estado}")
 
     con.close() 
+
+
+
+    # ==========================================
+#   VER NOTIFICAÇÕES (ENCOMENDAS PENDENTES)
+# ==========================================
+def ver_notificacoes():
+    con = conectar()
+    cur = con.cursor()
+
+    cur.execute("""
+        SELECT id, utilizador_id, total_cents, estado 
+        FROM encomendas
+        WHERE estado = 'pendente'
+    """)
+
+    pedidos = cur.fetchall()
+
+    print("\n=== NOTIFICAÇÕES DE NOVOS PEDIDOS ===")
+    if not pedidos:
+        print("Nenhum pedido pendente.")
+    else:
+        for p in pedidos:
+            print(f"Encomenda #{p[0]} | Cliente: {p[1]} | Total: {p[2] / 100:.2f}€ | Estado: {p[3]}")
+
+    con.close()
+
