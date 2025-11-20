@@ -240,3 +240,19 @@ def adicionar_categoria():
 
     print("Categoria adicionada!")
     con.close()
+
+
+
+
+#==========================================
+#TOTAL DO STOCK
+#==========================================
+def total_stock():
+    con = conectar()
+    cur = con.cursor()
+
+    cur.execute("SELECT SUM(stock) FROM produtos")
+    total = cur.fetchone()[0]
+
+    print(f"\nTotal de produtos em stock: {total}")
+    con.close()
