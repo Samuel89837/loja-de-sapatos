@@ -473,6 +473,17 @@ def historico_alteracoes():
 #GERIR UTILIZADORES
 #==========================================
 def gerir_utilizadores():
+
+    """
+    Lista os utilizadores registados.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
+
     con = conectar()
     cur = con.cursor()
 
