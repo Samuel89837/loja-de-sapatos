@@ -122,14 +122,18 @@ def procurar_produto():
 
 def ver_detalhes_produto():
     """
-    Pesquisa produtos pelo nome introduzido pelo utilizador.
+    Mostra informações completas de um produto escolhido pelo utilizador.
 
     Args:
         None
 
     Returns:
         None
+
+    Raises:
+        ValueError: Se o ID não existir.
     """
+
     pid = input("ID do produto: ")
 
     con = conectar()
@@ -185,7 +189,7 @@ def filtrar_produtos():
 
 def ver_por_categoria():
     """
-    Mostra produtos pertencentes a uma categoria escolhida pelo utilizador.
+    Mostra produtos que pertencem a uma categoria escolhida pelo utilizador.
 
     Args:
         None
@@ -263,7 +267,7 @@ def produtos_relacionados():
 
 def ver_carrinho():
     """
-    Mostra todos os itens atualmente presentes no carrinho do utilizador.
+    Mostra todos os produtos atualmente presentes no carrinho do utilizador.
 
     Args:
         None
@@ -296,6 +300,20 @@ def ver_carrinho():
 
 
 def adicionar_ao_carrinho():
+    """
+    Adiciona um produto ao carrinho, valida o stock e
+    atualiza a quantidade caso já existam no carrinho.
+
+    Args:
+        None
+
+    Returns:
+        None
+
+    Raises:
+        ValueError: Caso a quantidade pedida ultrapasse o stock disponível.
+    """
+
     pid = input("ID do produto: ")
     qtd = int(input("Quantidade: "))
 
