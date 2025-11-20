@@ -262,6 +262,16 @@ def produtos_relacionados():
 
 
 def ver_carrinho():
+    """
+    Mostra todos os itens atualmente presentes no carrinho do utilizador.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
+    
     con = conectar()
     cur = con.cursor()
 
