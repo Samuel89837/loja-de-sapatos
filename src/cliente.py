@@ -112,6 +112,15 @@ def procurar_produto():
 
 
 def ver_detalhes_produto():
+    """
+    Pesquisa produtos pelo nome introduzido pelo utilizador.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
     pid = input("ID do produto: ")
 
     con = conectar()
