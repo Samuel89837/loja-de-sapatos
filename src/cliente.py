@@ -383,6 +383,16 @@ def adicionar_ao_carrinho():
 
 
 def remover_do_carrinho():
+    """
+    Remove totalmente um produto do carrinho do utilizador.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
+
     pid = input("ID do produto para remover: ")
 
     con = conectar()
