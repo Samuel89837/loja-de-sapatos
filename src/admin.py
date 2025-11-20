@@ -279,3 +279,27 @@ def vendas_diarias():
 
     print(f"\nVendas de hoje ({hoje}): {(total or 0)/100:.2f}€")
     con.close()
+
+
+
+
+#==========================================
+#HISTÓRICO DE ALTERAÇÕES
+#==========================================
+def historico_alteracoes():
+    con = conectar()
+    cur = con.cursor()
+
+    cur.execute("""
+        SELECT produto_id, acao, data 
+        FROM historico_produtos
+        ORDER BY data DESC
+    """)
+
+    hist = cur.fetchall()
+
+    print("\n=== HISTÓRICO DE ALTERAÇÕES ===")
+    for h in hist:
+        print(f"Produto {h[0]} | {h[1]} | {h[2]}")
+
+    con.close()
