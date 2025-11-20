@@ -184,6 +184,16 @@ def filtrar_produtos():
 
 
 def ver_por_categoria():
+    """
+    Mostra produtos pertencentes a uma categoria escolhida pelo utilizador.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
+
     con = conectar()
     cur = con.cursor()
 
