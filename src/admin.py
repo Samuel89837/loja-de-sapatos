@@ -133,6 +133,21 @@ def adicionar_produto():
 #   EDITAR PRODUTO
 # ==========================================
 def editar_produto():
+
+    """
+    Edita os dados de um produto já existente.
+
+    Args:
+        None
+
+    Returns:
+        None
+
+    Raises:
+        ValueError: Se o ID não existir.
+    """
+
+
     pid = input("\nID do produto a editar: ")
 
     con = conectar()
