@@ -233,18 +233,65 @@ def adicionar_ao_carrinho():
     con = conectar()
     cur = con.cursor()
 
-    try:
+    # Verificar stock atual
+    cur.execute("SELECT stock, titulo FROM produtos WHERE id = ?", (pid,))
+    produto = cur.fetchone()
+
+    if not produto:
+        print("Produto não encontrado!")
+        con.close()
+        return
+
+    stock_atual, nome = produto
+
+    if stock_atual <= 0:
+        print(f"O produto '{nome}' está ESGOTADO.")
+        con.close()
+        return
+
+    # verificar se já existe no carrinho
+    cur.execute("""
+        SELECT quantidade FROM itens_carrinho
+        WHERE utilizador_id = 1 AND produto_id = ?
+    """, (pid,))
+    
+    existente = cur.fetchone()
+
+    # SE JÁ EXISTE → somar quantidade
+    if existente:
+        nova_qtd = existente[0] + qtd
+
+        if nova_qtd > stock_atual:
+            print(f"Stock insuficiente! Disponível: {stock_atual} unidades.")
+            con.close()
+            return
+
         cur.execute("""
-            INSERT INTO itens_carrinho (utilizador_id, produto_id, quantidade)
-            VALUES (1, ?, ?)
-        """, (pid, qtd))
+            UPDATE itens_carrinho
+            SET quantidade = ?
+            WHERE utilizador_id = 1 AND produto_id = ?
+        """, (nova_qtd, pid))
 
         con.commit()
-        print("Produto adicionado!")
-    except:
-        print("Erro ao adicionar. Talvez já esteja no carrinho.")
+        print(f"✔ Quantidade atualizada no carrinho! Agora tens {nova_qtd}x '{nome}'.")
+        con.close()
+        return
+    
+    # SE NÃO EXISTE → inserir normalmente
+    if qtd > stock_atual:
+        print(f"Stock insuficiente! Disponível: {stock_atual} unidades.")
+        con.close()
+        return
 
+    cur.execute("""
+        INSERT INTO itens_carrinho (utilizador_id, produto_id, quantidade)
+        VALUES (1, ?, ?)
+    """, (pid, qtd))
+
+    con.commit()
+    print(f"✔ '{nome}' adicionado ao carrinho! ({qtd} unidades)")
     con.close()
+
 
 
 
