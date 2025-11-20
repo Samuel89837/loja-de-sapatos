@@ -175,3 +175,9 @@ INSERT INTO itens_encomenda (encomenda_id, produto_id, quantidade, preco_unit_ce
 VALUES
 (1, 1, 1, 4999),
 (1, 2, 1, 2999);
+
+
+INSERT INTO notificacoes (utilizador_id, tipo, conteudo)
+VALUES
+(1, 'Encomenda', 'A sua encomenda #1 foi recebida.'),
+(1, 'Promoção', 'Novo desconto disponível em sapatos! 20% OFF.');
