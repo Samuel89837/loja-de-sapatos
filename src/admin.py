@@ -19,14 +19,23 @@ def autenticar_admin():
 
 def menu_admin():
     if not autenticar_admin():
-        return  
+        return
 
     while True:
-        print("\n--- Menu Administrador ---")
+        print("\n--- MENU ADMINISTRADOR ---")
         print("1 - Adicionar produto")
         print("2 - Editar produto")
         print("3 - Remover produto")
+        print("4 - Listar produtos")
+        print("5 - Ver notificações de pedidos")
+        print("6 - Ativar/Desativar produtos")
+        print("7 - Adicionar categoria")
+        print("8 - Total de produtos em stock")
+        print("9 - Total de vendas diárias")
+        print("10 - Histórico de alterações")
+        print("11 - Gerir utilizadores")
         print("0 - Voltar")
+
         opcao = input("Escolha: ")
 
         if opcao == "1":
@@ -35,6 +44,22 @@ def menu_admin():
             editar_produto()
         elif opcao == "3":
             remover_produto()
+        elif opcao == "4":
+            listar_produtos()
+        elif opcao == "5":
+            ver_notificacoes()
+        elif opcao == "6":
+            ativar_desativar_produto()
+        elif opcao == "7":
+            adicionar_categoria()
+        elif opcao == "8":
+            total_stock()
+        elif opcao == "9":
+            vendas_diarias()
+        elif opcao == "10":
+            historico_alteracoes()
+        elif opcao == "11":
+            gerir_utilizadores()
         elif opcao == "0":
             break
         else:
