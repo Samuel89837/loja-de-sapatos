@@ -436,6 +436,18 @@ def vendas_diarias():
 #HISTÓRICO DE ALTERAÇÕES
 #==========================================
 def historico_alteracoes():
+
+    """
+    Mostra todas as alterações feitas aos produtos.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
+
+
     con = conectar()
     cur = con.cursor()
 
