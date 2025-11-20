@@ -314,7 +314,6 @@ def finalizar_compra():
         JOIN produtos p ON p.id = i.produto_id
         WHERE i.utilizador_id = 1
     """)
-
     total = cur.fetchone()[0]
 
     if not total:
@@ -326,7 +325,6 @@ def finalizar_compra():
         INSERT INTO encomendas (utilizador_id, estado, total_cents)
         VALUES (1, 'pendente', ?)
     """, (total,))
-
     encomenda_id = cur.lastrowid
 
     # gerar itens_encomenda
@@ -337,6 +335,19 @@ def finalizar_compra():
         JOIN produtos ON produtos.id = itens_carrinho.produto_id
         WHERE utilizador_id = 1
     """, (encomenda_id,))
+
+    #DESCONTAR STOCK (a parte que faltava)
+    cur.execute("""
+        UPDATE produtos
+        SET stock = stock - (
+            SELECT quantidade 
+            FROM itens_carrinho 
+            WHERE produto_id = produtos.id AND utilizador_id = 1
+        )
+        WHERE id IN (
+            SELECT produto_id FROM itens_carrinho WHERE utilizador_id = 1
+        )
+    """)
 
     # limpar carrinho
     cur.execute("DELETE FROM itens_carrinho WHERE utilizador_id = 1")
