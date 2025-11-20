@@ -132,6 +132,20 @@ def menu_cliente():
 
         con.close()
 
+
+    def ver_por_categoria():
+        con = conectar()
+        cur = con.cursor()
+
+        cur.execute("SELECT id, nome FROM categorias")
+        categorias = cur.fetchall()
+
+        print("\nCategorias disponíveis:")
+        for c in categorias:
+            print(f"{c[0]} - {c[1]}")
+
+        cid = input("Escolha uma categoria: ")
+
     def adicionar_ao_carrinho():
         print(" Produto adicionado ao carrinho!")
 
