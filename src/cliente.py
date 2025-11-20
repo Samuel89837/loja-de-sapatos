@@ -65,8 +65,17 @@ def menu_cliente():
 
 
     def ver_catalogo():
-        print(" Exibindo catálogo de produtos...")
+        con = conectar()
+        cur = con.cursor()
 
+        cur.execute("SELECT id, titulo, preco_cents, stock FROM produtos WHERE ativo = 1")
+        produtos = cur.fetchall()
+
+        print("\n===== CATÁLOGO =====")
+        for p in produtos:
+            print(f"ID: {p[0]} | {p[1]} | {p[2]/100:.2f}€ | Stock: {p[3]}")
+
+        con.close()
 
     def adicionar_ao_carrinho():
         print(" Produto adicionado ao carrinho!")
@@ -86,3 +95,5 @@ def menu_cliente():
     
     def finalizar_compra():
         print(" Compra finalizada com sucesso!")
+
+
