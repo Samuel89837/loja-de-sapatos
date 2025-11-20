@@ -343,6 +343,18 @@ def ativar_desativar_produto():
 #ADICIONAR CATEGORIA
 #==========================================
 def adicionar_categoria():
+
+    """
+    Adiciona uma nova categoria de produtos.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
+
+
     nome = input("\nNome da categoria: ")
     desc = input("Descrição: ")
 
