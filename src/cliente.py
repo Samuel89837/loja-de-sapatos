@@ -248,7 +248,7 @@ def adicionar_ao_carrinho():
 
 
 
-def remover_do_carrinho(uid):
+def remover_do_carrinho():
     pid = input("ID do produto para remover: ")
 
     con = conectar()
@@ -257,7 +257,7 @@ def remover_do_carrinho(uid):
     cur.execute("""
         DELETE FROM itens_carrinho 
         WHERE utilizador_id = ? AND produto_id = ?
-    """, (uid, pid))
+    """, ( pid))
 
     con.commit()
     print("Removido!")
