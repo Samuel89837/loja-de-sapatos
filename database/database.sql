@@ -162,3 +162,10 @@ INSERT INTO itens_carrinho (utilizador_id, produto_id, quantidade)
 VALUES
 (1, 1, 1),
 (1, 2, 2);
+
+
+
+INSERT INTO encomendas (utilizador_id, estado, total_cents, nome_envio, morada_envio, telefone_contacto)
+VALUES
+(1, 'pendente', 7998, 'Daniel Gatinhos', 'Rua das Flores 12', '912345678'),
+(1, 'pago', 2999, 'Daniel Gatinhos', 'Rua das Flores 12', '912345678');
