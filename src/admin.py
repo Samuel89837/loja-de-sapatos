@@ -94,3 +94,43 @@ def adicionar_produto():
     con.commit()
     print("Produto adicionado com sucesso!")
     con.close()
+
+
+    # ==========================================
+#   EDITAR PRODUTO
+# ==========================================
+def editar_produto():
+    pid = input("\nID do produto a editar: ")
+
+    con = conectar()
+    cur = con.cursor()
+
+    cur.execute("SELECT id, titulo, descricao, preco_cents, stock FROM produtos WHERE id = ?", (pid,))
+    produto = cur.fetchone()
+
+    if not produto:
+        print("Produto não encontrado!")
+        return
+
+    print(f"\nProduto atual:")
+    print(f"Nome: {produto[1]}")
+    print(f"Descrição: {produto[2]}")
+    print(f"Preço: {produto[3] / 100:.2f}€")
+    print(f"Stock: {produto[4]}")
+
+    novo_nome = input("Novo nome (ENTER p/ manter): ") or produto[1]
+    nova_desc = input("Nova descrição (ENTER p/ manter): ") or produto[2]
+    novo_preco = input("Novo preço (ENTER p/ manter): ")
+    novo_preco = int(float(novo_preco) * 100) if novo_preco else produto[3]
+    novo_stock = input("Novo stock (ENTER p/ manter): ")
+    novo_stock = int(novo_stock) if novo_stock else produto[4]
+
+    cur.execute("""
+        UPDATE produtos 
+        SET titulo = ?, descricao = ?, preco_cents = ?, stock = ?, atualizado_em = CURRENT_TIMESTAMP
+        WHERE id = ?
+    """, (novo_nome, nova_desc, novo_preco, novo_stock, pid))
+
+    con.commit()
+    print("Produto editado com sucesso!")
+    con.close()
