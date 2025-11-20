@@ -291,7 +291,7 @@ def historico_alteracoes():
     cur = con.cursor()
 
     cur.execute("""
-        SELECT produto_id, acao, data 
+        SELECT produto_id, acao, criado_em
         FROM historico_produtos
         ORDER BY criado_em DESC
     """)
@@ -303,6 +303,7 @@ def historico_alteracoes():
         print(f"Produto {h[0]} | {h[1]} | {h[2]}")
 
     con.close()
+
 
 
 
