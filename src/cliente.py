@@ -3,7 +3,7 @@ from db import conectar
 # =====================================================
 # MENU CLIENTE
 # =====================================================
-def menu_cliente(uid):
+def menu_cliente():
     while True:
         print("\n===== MENU CLIENTE =====")
         print("1 - Ver catálogo")
@@ -41,22 +41,22 @@ def menu_cliente(uid):
             produtos_relacionados()
 
         elif opcao == "7":
-            ver_carrinho(uid)
+            ver_carrinho()
 
         elif opcao == "8":
-            adicionar_ao_carrinho(uid)
+            adicionar_ao_carrinho()
 
         elif opcao == "9":
-            remover_do_carrinho(uid)
+            remover_do_carrinho()
 
         elif opcao == "10":
-            alterar_quantidade_carrinho(uid)
+            alterar_quantidade_carrinho()
 
         elif opcao == "11":
-            total_carrinho(uid)
+            total_carrinho()
 
         elif opcao == "12":
-            finalizar_compra(uid)
+            finalizar_compra()
 
         elif opcao == "0":
             break
