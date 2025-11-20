@@ -402,6 +402,17 @@ def total_stock():
 #VENDAS DIÁRIAS
 #==========================================
 def vendas_diarias():
+
+    """
+    Calcula o total de vendas feitas no dia atual.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
+
     hoje = datetime.now().strftime("%Y-%m-%d")
 
     con = conectar()
