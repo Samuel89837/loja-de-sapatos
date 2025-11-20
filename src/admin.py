@@ -134,3 +134,20 @@ def editar_produto():
     con.commit()
     print("Produto editado com sucesso!")
     con.close()
+
+
+
+    # ==========================================
+#   REMOVER PRODUTO
+# ==========================================
+def remover_produto():
+    pid = input("\nID do produto a remover: ")
+
+    con = conectar()
+    cur = con.cursor()
+
+    cur.execute("DELETE FROM produtos WHERE id = ?", (pid,))
+    con.commit()
+
+    print("Produto removido com sucesso!")
+    con.close()
