@@ -293,7 +293,7 @@ def historico_alteracoes():
     cur.execute("""
         SELECT produto_id, acao, data 
         FROM historico_produtos
-        ORDER BY data DESC
+        ORDER BY criado_em DESC
     """)
 
     hist = cur.fetchall()
