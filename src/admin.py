@@ -230,6 +230,17 @@ def remover_produto():
 #   LISTAR PRODUTOS
 # ==========================================
 def listar_produtos():
+
+    """
+    Lista todos os produtos existentes.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
+
     con = conectar()
     cur = con.cursor()
 
