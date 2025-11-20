@@ -186,9 +186,26 @@ def menu_cliente():
 
         con.close()
 
+    def adicionar_ao_carrinho(uid):
+        pid = input("ID do produto: ")
+        qtd = int(input("Quantidade: "))
 
-    def adicionar_ao_carrinho():
-        print(" Produto adicionado ao carrinho!")
+        con = conectar()
+        cur = con.cursor()
+
+        try:
+            cur.execute("""
+                INSERT INTO itens_carrinho (utilizador_id, produto_id, quantidade)
+                VALUES (?, ?, ?)
+            """, (uid, pid, qtd))
+
+            con.commit()
+            print("Produto adicionado!")
+        except:
+            print("Erro ao adicionar. Talvez já esteja no carrinho.")
+
+        con.close()
+    
 
 
     def ver_carrinho():
