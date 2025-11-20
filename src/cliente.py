@@ -490,6 +490,20 @@ def total_carrinho():
 
 
 def finalizar_compra():
+    """
+    Finaliza a compra: cria a encomenda, guarda os itens,
+    atualiza o stock e limpa o carrinho.
+
+    Args:
+        None
+
+    Returns:
+        None
+
+    Raises:
+        ValueError: Se o carrinho estiver vazio.
+    """    
+
     con = conectar()
     cur = con.cursor()
 
