@@ -146,6 +146,38 @@ def menu_cliente():
 
         cid = input("Escolha uma categoria: ")
 
+
+    def produtos_relacionados():
+        pid = input("ID do produto: ")
+
+        con = conectar()
+        cur = con.cursor()
+
+        cur.execute("""
+            SELECT categoria_id FROM produtos WHERE id = ?
+        """, (pid,))
+        row = cur.fetchone()
+
+        if not row:
+            print("Produto não encontrado.")
+            return
+
+        categoria = row[0]
+
+        cur.execute("""
+            SELECT id, titulo FROM produtos 
+            WHERE categoria_id = ? AND id != ?
+        """, (categoria, pid))
+
+        relacionados = cur.fetchall()
+
+        print("\nProdutos relacionados:")
+        for r in relacionados:
+            print(f"{r[0]} - {r[1]}")
+
+        con.close()
+
+
     def adicionar_ao_carrinho():
         print(" Produto adicionado ao carrinho!")
 
@@ -164,5 +196,9 @@ def menu_cliente():
     
     def finalizar_compra():
         print(" Compra finalizada com sucesso!")
+
+
+
+
 
 
