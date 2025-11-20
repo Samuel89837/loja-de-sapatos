@@ -272,7 +272,7 @@ def vendas_diarias():
     cur.execute("""
         SELECT SUM(total_cents) 
         FROM encomendas
-        WHERE DATE(data) = ?
+        WHERE DATE(criado_em) = ?
     """, (hoje,))
 
     total = cur.fetchone()[0]
