@@ -1,3 +1,5 @@
+from db import conectar
+
 def menu_cliente():
     while True:
         print("\n===== MENU CLIENTE =====")
