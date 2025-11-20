@@ -256,15 +256,16 @@ def remover_do_carrinho():
 
     cur.execute("""
         DELETE FROM itens_carrinho 
-        WHERE utilizador_id = ? AND produto_id = ?
-    """, ( pid))
+        WHERE utilizador_id = 1 AND produto_id = ?
+    """, (pid,))  # <-- reparei o erro aqui
 
     con.commit()
     print("Removido!")
     con.close()
 
 
-def alterar_quantidade_carrinho(uid):
+
+def alterar_quantidade_carrinho():
     pid = input("Produto: ")
     qtd = int(input("Nova quantidade: "))
 
@@ -274,12 +275,13 @@ def alterar_quantidade_carrinho(uid):
     cur.execute("""
         UPDATE itens_carrinho 
         SET quantidade = ?
-        WHERE utilizador_id = ? AND produto_id = ?
-    """, (qtd, uid, pid))
+        WHERE utilizador_id = 1 AND produto_id = ?
+    """, (qtd, pid))
 
     con.commit()
     print("Quantidade atualizada!")
     con.close()
+
 
 
 def total_carrinho(uid):
