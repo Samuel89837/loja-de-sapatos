@@ -70,6 +70,15 @@ def menu_cliente():
 # =====================================================
 
 def ver_catalogo():
+    """
+    Mostra a lista completa de produtos disponíveis e respetivos preços.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
     con = conectar()
     cur = con.cursor()
 
