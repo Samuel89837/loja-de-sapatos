@@ -319,6 +319,23 @@ def alterar_quantidade_carrinho():
     con = conectar()
     cur = con.cursor()
 
+    # verificar stock do produto
+    cur.execute("SELECT stock, titulo FROM produtos WHERE id = ?", (pid,))
+    produto = cur.fetchone()
+
+    if not produto:
+        print("Produto não encontrado!")
+        con.close()
+        return
+
+    stock_atual, nome = produto
+
+    if qtd > stock_atual:
+        print(f"Stock insuficiente! Disponível: {stock_atual} unidades.")
+        con.close()
+        return
+
+    # atualizar carrinho
     cur.execute("""
         UPDATE itens_carrinho 
         SET quantidade = ?
@@ -326,8 +343,9 @@ def alterar_quantidade_carrinho():
     """, (qtd, pid))
 
     con.commit()
-    print("Quantidade atualizada!")
+    print(f"Quantidade atualizada para '{nome}' → {qtd} unidades")
     con.close()
+
 
 
 
