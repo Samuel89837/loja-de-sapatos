@@ -266,6 +266,25 @@ def menu_cliente():
         print("Quantidade atualizada!")
         con.close()
 
+
+    
+    def total_carrinho(uid):
+        con = conectar()
+        cur = con.cursor()
+
+        cur.execute("""
+            SELECT SUM(quantidade * preco_cents)
+            FROM itens_carrinho i
+            JOIN produtos p ON p.id = i.produto_id
+            WHERE i.utilizador_id = ?
+        """, (uid,))
+
+        total = cur.fetchone()[0]
+
+        print("\n===== TOTAL =====")
+        print(f"Total: {(total or 0) / 100:.2f}€")
+        con.close()
+
     
     def finalizar_compra():
         print(" Compra finalizada com sucesso!")
