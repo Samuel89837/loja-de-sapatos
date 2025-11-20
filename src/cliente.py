@@ -115,6 +115,23 @@ def menu_cliente():
 
         con.close()
 
+
+    def filtrar_produtos():
+        minimo = int(input("Preço mínimo (centimos): "))
+        maximo = int(input("Preço máximo (centimos): "))
+
+        con = conectar()
+        cur = con.cursor()
+
+        cur.execute("SELECT id, titulo, preco_cents FROM produtos WHERE preco_cents BETWEEN ? AND ?", (minimo, maximo))
+        produtos = cur.fetchall()
+
+        print("\n===== FILTRADOS =====")
+        for p in produtos:
+            print(f"{p[0]} - {p[1]} - {p[2]/100:.2f}€")
+
+        con.close()
+
     def adicionar_ao_carrinho():
         print(" Produto adicionado ao carrinho!")
 
