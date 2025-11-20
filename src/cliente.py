@@ -73,7 +73,7 @@ def ver_catalogo():
     con = conectar()
     cur = con.cursor()
 
-    cur.execute("SELECT id, titulo, preco_cents, stock FROM produtos WHERE ativo = 1")
+    cur.execute("SELECT id, titulo, preco_cents, stock FROM produtos")
     produtos = cur.fetchall()
 
     print("\n===== CATÁLOGO =====")
