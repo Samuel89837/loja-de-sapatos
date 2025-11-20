@@ -146,6 +146,15 @@ def menu_cliente():
 
         cid = input("Escolha uma categoria: ")
 
+        cur.execute("SELECT id, titulo, preco_cents FROM produtos WHERE categoria_id = ?", (cid,))
+        produtos = cur.fetchall()
+
+        print("\nProdutos:")
+        for p in produtos:
+            print(f"{p[0]} - {p[1]} - {p[2]/100:.2f}€")
+
+        con.close()
+
 
     def produtos_relacionados():
         pid = input("ID do produto: ")
