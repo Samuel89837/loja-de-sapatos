@@ -92,6 +92,29 @@ def menu_cliente():
 
         con.close()
 
+
+
+    def ver_detalhes_produto():
+        pid = input("ID do produto: ")
+
+        con = conectar()
+        cur = con.cursor()
+
+        cur.execute("SELECT * FROM produtos WHERE id = ?", (pid,))
+        p = cur.fetchone()
+
+        if p:
+            print("\n===== DETALHES =====")
+            print(f"ID: {p[0]}")
+            print(f"Título: {p[1]}")
+            print(f"Descrição: {p[2]}")
+            print(f"Preço: {p[3]/100:.2f}€")
+            print(f"Stock: {p[6]}")
+        else:
+            print("Produto não encontrado.")
+
+        con.close()
+
     def adicionar_ao_carrinho():
         print(" Produto adicionado ao carrinho!")
 
