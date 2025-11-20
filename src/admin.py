@@ -198,3 +198,27 @@ def ver_notificacoes():
 
     con.close()
 
+
+#==========================================
+# ATIVAR / DESATIVAR PRODUTO
+#==========================================
+def ativar_desativar_produto():
+    pid = input("ID do produto: ")
+
+    con = conectar()
+    cur = con.cursor()
+
+    cur.execute("SELECT ativo FROM produtos WHERE id = ?", (pid,))
+    ativo = cur.fetchone()
+
+    if not ativo:
+        print("Produto não encontrado!")
+        return
+
+    novo_estado = 0 if ativo[0] else 1
+
+    cur.execute("UPDATE produtos SET ativo = ? WHERE id = ?", (novo_estado, pid))
+    con.commit()
+
+    print("Produto atualizado com sucesso!")
+    con.close()
