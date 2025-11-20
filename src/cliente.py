@@ -250,8 +250,21 @@ def menu_cliente():
 
 
 
-    def filtrar_produtos():
-        print(" Filtrando produtos por preço...")
+    def alterar_quantidade_carrinho(uid):
+        pid = input("Produto: ")
+        qtd = int(input("Nova quantidade: "))
+
+        con = conectar()
+        cur = con.cursor()
+
+        cur.execute("""
+            UPDATE itens_carrinho SET quantidade = ?
+            WHERE utilizador_id = ? AND produto_id = ?
+        """, (qtd, uid, pid))
+
+        con.commit()
+        print("Quantidade atualizada!")
+        con.close()
 
     
     def finalizar_compra():
