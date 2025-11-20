@@ -256,3 +256,26 @@ def total_stock():
 
     print(f"\nTotal de produtos em stock: {total}")
     con.close()
+
+
+
+
+#==========================================
+#VENDAS DIÁRIAS
+#==========================================
+def vendas_diarias():
+    hoje = datetime.now().strftime("%Y-%m-%d")
+
+    con = conectar()
+    cur = con.cursor()
+
+    cur.execute("""
+        SELECT SUM(total_cents) 
+        FROM encomendas
+        WHERE DATE(data) = ?
+    """, (hoje,))
+
+    total = cur.fetchone()[0]
+
+    print(f"\nVendas de hoje ({hoje}): {(total or 0)/100:.2f}€")
+    con.close()
