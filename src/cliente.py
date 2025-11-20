@@ -77,6 +77,21 @@ def menu_cliente():
 
         con.close()
 
+    def procurar_produto():
+        termo = input("Nome do produto: ")
+
+        con = conectar()
+        cur = con.cursor()
+
+        cur.execute("SELECT id, titulo, preco_cents FROM produtos WHERE titulo LIKE ?", ('%' + termo + '%',))
+        produtos = cur.fetchall()
+
+        print("\n===== RESULTADOS =====")
+        for p in produtos:
+            print(f"ID: {p[0]} | {p[1]} | {p[2]/100:.2f}€")
+
+        con.close()
+
     def adicionar_ao_carrinho():
         print(" Produto adicionado ao carrinho!")
 
