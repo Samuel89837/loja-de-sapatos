@@ -95,6 +95,15 @@ def ver_catalogo():
 
 
 def procurar_produto():
+    """
+    Pesquisa produtos pelo nome introduzido pelo utilizador.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
     termo = input("Nome do produto: ")
 
     con = conectar()
@@ -143,6 +152,7 @@ def ver_detalhes_produto():
 
 
 def filtrar_produtos():
+
     minimo = int(input("Preço mínimo (centimos): "))
     maximo = int(input("Preço máximo (centimos): "))
 
