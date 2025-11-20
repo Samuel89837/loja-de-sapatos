@@ -189,6 +189,17 @@ def editar_produto():
 #   REMOVER PRODUTO
 # ==========================================
 def remover_produto():
+
+    """
+    Remove um produto da base de dados.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
+
     pid = input("\nID do produto a remover: ")
 
     con = conectar()
