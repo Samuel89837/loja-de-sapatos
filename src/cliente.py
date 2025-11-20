@@ -186,6 +186,31 @@ def menu_cliente():
 
         con.close()
 
+
+    def ver_carrinho(uid):
+        con = conectar()
+        cur = con.cursor()
+
+        cur.execute("""
+            SELECT p.titulo, i.quantidade, p.preco_cents 
+            FROM itens_carrinho i
+            JOIN produtos p ON p.id = i.produto_id
+            WHERE i.utilizador_id = ?
+            """, (uid,))
+
+        itens = cur.fetchall()
+
+        print("\n===== CARRINHO =====")
+        if not itens:
+            print("Carrinho vazio.")
+        else:
+            for item in itens:
+                print(f"{item[0]} - {item[1]} unidades - {item[2]/100:.2f}€")
+
+        con.close()
+
+
+
     def adicionar_ao_carrinho(uid):
         pid = input("ID do produto: ")
         qtd = int(input("Quantidade: "))
@@ -208,10 +233,7 @@ def menu_cliente():
     
 
 
-    def ver_carrinho():
-        print(" Exibindo itens do carrinho...")
 
-    
     def remover_do_carrinho():
         print(" Produto removido do carrinho!")
 
