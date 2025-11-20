@@ -129,7 +129,7 @@ VALUES
 ('Sapatos Mulher', 'Calçado feminino');
 
 
-NSERT INTO produtos (titulo, descricao, preco_cents, categoria_id, stock) 
+INSERT INTO produtos (titulo, descricao, preco_cents, categoria_id, stock) 
 VALUES
 ('Sapatilha Nike Air', 'Modelo desportivo confortável', 4999, 1, 10),
 ('Sandália Elegante', 'Sandália feminina para verão', 2999, 2, 15);
