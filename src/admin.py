@@ -208,21 +208,29 @@ def ativar_desativar_produto():
     con = conectar()
     cur = con.cursor()
 
-    cur.execute("SELECT ativo FROM produtos WHERE id = ?", (pid,))
-    ativo = cur.fetchone()
+    cur.execute("SELECT titulo, ativo FROM produtos WHERE id = ?", (pid,))
+    produto = cur.fetchone()
 
-    if not ativo:
+    if not produto:
         print("Produto não encontrado!")
         return
 
-    novo_estado = 0 if ativo[0] else 1
+    nome, ativo = produto
+    print(f"\nEstado atual: {'Ativo' if ativo else 'Inativo'}")
 
-    cur.execute("UPDATE produtos SET ativo = ? WHERE id = ?", (novo_estado, pid))
+    # Alterna o estado
+    novo_estado = 0 if ativo == 1 else 1
+
+    cur.execute("""
+        UPDATE produtos 
+        SET ativo = ? 
+        WHERE id = ?
+    """, (novo_estado, pid))
+
     con.commit()
 
-    print("Produto atualizado com sucesso!")
+    print(f"Produto '{nome}' agora está: {'Ativo' if novo_estado else 'Inativo'}")
     con.close()
-
 
 
 #==========================================
