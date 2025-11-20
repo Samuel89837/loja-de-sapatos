@@ -297,6 +297,18 @@ def ver_notificacoes():
 # ATIVAR / DESATIVAR PRODUTO
 #==========================================
 def ativar_desativar_produto():
+
+    """
+    Alterna entre ativar e desativar um produto.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
+
+
     pid = input("ID do produto: ")
 
     con = conectar()
