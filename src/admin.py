@@ -43,7 +43,7 @@ def menu_admin():
     Returns:
         None
     """
-    
+
     if not autenticar_admin():
         return
 
@@ -98,6 +98,17 @@ def menu_admin():
 #   ADICIONAR PRODUTO
 # ==========================================
 def adicionar_produto():
+
+    """
+    Adiciona um novo produto à base de dados.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
+
     print("\n=== Adicionar Produto ===")
     titulo = input("Nome: ")
     descricao = input("Descrição: ")
