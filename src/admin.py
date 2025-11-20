@@ -151,3 +151,23 @@ def remover_produto():
 
     print("Produto removido com sucesso!")
     con.close()
+
+
+
+
+   # ==========================================
+#   LISTAR PRODUTOS
+# ==========================================
+def listar_produtos():
+    con = conectar()
+    cur = con.cursor()
+
+    cur.execute("SELECT id, titulo, preco_cents, stock, ativo FROM produtos")
+    produtos = cur.fetchall()
+
+    print("\n=== LISTA DE PRODUTOS ===")
+    for p in produtos:
+        estado = "Ativo" if p[4] else "Inativo"
+        print(f"{p[0]} | {p[1]} | {p[2]/100:.2f}€ | Stock: {p[3]} | {estado}")
+
+    con.close() 
