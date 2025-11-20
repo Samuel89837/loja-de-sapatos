@@ -1,3 +1,7 @@
+from db import conectar
+from datetime import datetime
+
+
 ADMIN_CREDENCIAIS = {
     "utilizador": "admin",
     "password": "1234"
@@ -64,3 +68,29 @@ def menu_admin():
             break
         else:
             print("Opção inválida!")
+
+
+    
+    
+# ==========================================
+#   ADICIONAR PRODUTO
+# ==========================================
+def adicionar_produto():
+    print("\n=== Adicionar Produto ===")
+    titulo = input("Nome: ")
+    descricao = input("Descrição: ")
+    preco = float(input("Preço (€): "))
+    stock = int(input("Stock inicial: "))
+    categoria = input("ID da categoria: ")
+
+    con = conectar()
+    cur = con.cursor()
+
+    cur.execute("""
+        INSERT INTO produtos (titulo, descricao, preco_cents, stock, categoria_id, ativo)
+        VALUES (?, ?, ?, ?, ?, 1)
+    """, (titulo, descricao, int(preco * 100), stock, categoria))
+
+    con.commit()
+    print("Produto adicionado com sucesso!")
+    con.close()
