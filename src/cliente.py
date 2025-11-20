@@ -284,7 +284,7 @@ def alterar_quantidade_carrinho():
 
 
 
-def total_carrinho(uid):
+def total_carrinho():
     con = conectar()
     cur = con.cursor()
 
@@ -292,8 +292,8 @@ def total_carrinho(uid):
         SELECT SUM(quantidade * preco_cents)
         FROM itens_carrinho i
         JOIN produtos p ON p.id = i.produto_id
-        WHERE i.utilizador_id = ?
-    """, (uid,))
+        WHERE i.utilizador_id = 1
+    """)
 
     total = cur.fetchone()[0]
 
