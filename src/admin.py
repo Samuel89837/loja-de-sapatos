@@ -3,6 +3,19 @@ ADMIN_CREDENCIAIS = {
     "password": "1234"
 }
 
+def autenticar_admin():
+    print("\n=== Login do Administrador ===")
+    user = input("Utilizador: ")
+    password = input("Palavra-passe: ")
+
+    if user == ADMIN_CREDENCIAIS["utilizador"] and password == ADMIN_CREDENCIAIS["password"]:
+        print("\nLogin bem-sucedido!")
+        return True
+    else:
+        print("\nCredenciais incorretas. Acesso negado.")
+        return False
+
+
 
 def menu_admin():
     if not autenticar_admin():
