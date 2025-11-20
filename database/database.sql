@@ -149,3 +149,9 @@ NSERT INTO produtos (titulo, descricao, preco_cents, categoria_id, stock)
 VALUES
 ('Sapatilha Nike Air', 'Modelo desportivo confortável', 4999, 1, 10),
 ('Sandália Elegante', 'Sandália feminina para verão', 2999, 2, 15);
+
+
+INSERT INTO imagens_produtos (produto_id, url, alt, principal)
+VALUES
+(1, 'https://www.nike.com/pt/t/sapatilhas-air-force-1-07-E5NnNyBr/CW2288-111', 'Nike Air Vista Lateral', 1),
+(2, 'https://www.jdsports.pt/product/castanho-birkenstock-sandlias-arizona-eva-mulher/771573_jdsportspt/', 'Sandália elegante dourada', 1);
