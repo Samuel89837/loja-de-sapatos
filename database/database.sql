@@ -131,3 +131,9 @@ CREATE TABLE configuracoes (
     chave VARCHAR(255) PRIMARY KEY,
     valor VARCHAR(2000)
 );
+
+
+INSERT INTO utilizadores (nome, email, password) 
+VALUES 
+('Daniel Gatinhos', 'danielmiau@gmail.com', 'miau1234'),
+('Maria Alberta', 'maria@gmail.com', 'maria123');
