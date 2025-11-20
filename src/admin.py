@@ -8,6 +8,17 @@ ADMIN_CREDENCIAIS = {
 }
 
 def autenticar_admin():
+
+    """
+    Realiza a autenticação do administrador através de input.
+
+    Args:
+        None
+
+    Returns:
+        bool: True se as credenciais forem válidas, False caso contrário.
+    """
+
     print("\n=== Login do Administrador ===")
     user = input("Utilizador: ")
     password = input("Palavra-passe: ")
