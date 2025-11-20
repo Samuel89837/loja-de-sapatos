@@ -303,3 +303,22 @@ def historico_alteracoes():
         print(f"Produto {h[0]} | {h[1]} | {h[2]}")
 
     con.close()
+
+
+
+
+#==========================================
+#GERIR UTILIZADORES
+#==========================================
+def gerir_utilizadores():
+    con = conectar()
+    cur = con.cursor()
+
+    cur.execute("SELECT id, nome, email FROM utilizadores")
+    utilizadores = cur.fetchall()
+
+    print("\n=== UTILIZADORES ===")
+    for u in utilizadores:
+        print(f"{u[0]} | {u[1]} | {u[2]}")
+
+    con.close()
