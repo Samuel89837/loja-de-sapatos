@@ -222,6 +222,16 @@ def ver_por_categoria():
 
 
 def produtos_relacionados():
+    """
+    Mostra produtos da mesma categoria do produto escolhido, exceto ele próprio.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """ 
+    
     pid = input("ID do produto: ")
 
     con = conectar()
