@@ -188,3 +188,8 @@ VALUES
 (1, 'Atualização de preço', 2, 'preco = 3999', 'preco = 4999'),
 (2, 'Alteração de stock', 2, 'stock = 10', 'stock = 15');
 
+
+INSERT INTO configuracoes (chave, valor)
+VALUES
+('site_manutencao', 'false'),
+('itens_por_pagina', '12');
