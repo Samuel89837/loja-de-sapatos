@@ -260,6 +260,18 @@ def listar_produtos():
 #   VER NOTIFICAÇÕES (ENCOMENDAS PENDENTES)
 # ==========================================
 def ver_notificacoes():
+
+    """
+    Mostra as encomendas pendentes.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
+
+
     con = conectar()
     cur = con.cursor()
 
