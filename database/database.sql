@@ -1,135 +1,119 @@
+PRAGMA foreign_keys = ON;
+
 CREATE TABLE utilizadores (
-    id INT IDENTITY(1,1) PRIMARY KEY,
-    nome VARCHAR(255),
-    email VARCHAR(255) UNIQUE,
-    password VARCHAR(255)
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome TEXT,
+    email TEXT UNIQUE,
+    password TEXT
 );
 
+CREATE TABLE categorias (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome TEXT NOT NULL UNIQUE,
+    descricao TEXT,
+    criado_em TEXT DEFAULT CURRENT_TIMESTAMP
+);
 
 CREATE TABLE produtos (
-    id INT IDENTITY(1,1) PRIMARY KEY,
-    titulo VARCHAR(255) NOT NULL,
-    descricao VARCHAR(500),
-    preco_cents INT NOT NULL CHECK (preco_cents >= 0),
-    moeda VARCHAR(10) NOT NULL DEFAULT 'EUR',
-    ativo BIT NOT NULL DEFAULT 1,
-    stock INT NOT NULL DEFAULT 0,
-    categoria_id INT NULL,
-    criado_em DATETIME NOT NULL DEFAULT GETDATE(),
-    atualizado_em DATETIME NOT NULL DEFAULT GETDATE(),
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    titulo TEXT NOT NULL,
+    descricao TEXT,
+    preco_cents INTEGER NOT NULL CHECK (preco_cents >= 0),
+    moeda TEXT NOT NULL DEFAULT 'EUR',
+    ativo INTEGER NOT NULL DEFAULT 1,
+    stock INTEGER NOT NULL DEFAULT 0,
+    categoria_id INTEGER,
+    criado_em TEXT DEFAULT CURRENT_TIMESTAMP,
+    atualizado_em TEXT DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (categoria_id) REFERENCES categorias(id)
 );
 
-
 CREATE TRIGGER trg_produtos_update
-ON produtos
-AFTER UPDATE
-AS
+AFTER UPDATE ON produtos
 BEGIN
-    UPDATE produtos 
-    SET atualizado_em = GETDATE()
-    WHERE id IN (SELECT id FROM inserted);
+    UPDATE produtos
+    SET atualizado_em = CURRENT_TIMESTAMP
+    WHERE id = NEW.id;
 END;
 
-
 CREATE TABLE imagens_produtos (
-    id INT IDENTITY(1,1) PRIMARY KEY,
-    produto_id INT NOT NULL,
-    url VARCHAR(500) NOT NULL,
-    alt VARCHAR(500),
-    principal BIT NOT NULL DEFAULT 0,
-    criado_em DATETIME NOT NULL DEFAULT GETDATE(),
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    produto_id INTEGER NOT NULL,
+    url TEXT NOT NULL,
+    alt TEXT,
+    principal INTEGER NOT NULL DEFAULT 0,
+    criado_em TEXT DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (produto_id) REFERENCES produtos(id) ON DELETE CASCADE
 );
 
-
-CREATE TABLE categorias (
-    id INT IDENTITY(1,1) PRIMARY KEY,
-    nome VARCHAR(255) NOT NULL UNIQUE,
-    descricao VARCHAR(500),
-    criado_em DATETIME NOT NULL DEFAULT GETDATE()
-);
-
-
 CREATE TABLE itens_carrinho (
-    id INT IDENTITY(1,1) PRIMARY KEY,
-    utilizador_id INT NOT NULL,
-    produto_id INT NOT NULL,
-    quantidade INT NOT NULL CHECK (quantidade > 0),
-    adicionado_em DATETIME NOT NULL DEFAULT GETDATE(),
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    utilizador_id INTEGER NOT NULL,
+    produto_id INTEGER NOT NULL,
+    quantidade INTEGER NOT NULL CHECK (quantidade > 0),
+    adicionado_em TEXT DEFAULT CURRENT_TIMESTAMP,
     UNIQUE (utilizador_id, produto_id),
     FOREIGN KEY (utilizador_id) REFERENCES utilizadores(id) ON DELETE CASCADE,
     FOREIGN KEY (produto_id) REFERENCES produtos(id) ON DELETE CASCADE
 );
 
-
 CREATE TABLE encomendas (
-    id INT IDENTITY(1,1) PRIMARY KEY,
-    utilizador_id INT NULL,
-    estado VARCHAR(20) NOT NULL CHECK (estado IN ('pendente', 'pago', 'enviado')),
-    total_cents INT NOT NULL,
-    moeda VARCHAR(10) NOT NULL DEFAULT 'EUR',
-    nome_envio VARCHAR(255),
-    morada_envio VARCHAR(255),
-    telefone_contacto VARCHAR(50),
-    criado_em DATETIME NOT NULL DEFAULT GETDATE(),
-    atualizado_em DATETIME NOT NULL DEFAULT GETDATE(),
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    utilizador_id INTEGER,
+    estado TEXT NOT NULL CHECK (estado IN ('pendente', 'pago', 'enviado')),
+    total_cents INTEGER NOT NULL,
+    moeda TEXT NOT NULL DEFAULT 'EUR',
+    nome_envio TEXT,
+    morada_envio TEXT,
+    telefone_contacto TEXT,
+    criado_em TEXT DEFAULT CURRENT_TIMESTAMP,
+    atualizado_em TEXT DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (utilizador_id) REFERENCES utilizadores(id)
 );
 
-
 CREATE TRIGGER trg_encomendas_update
-ON encomendas
-AFTER UPDATE
-AS
+AFTER UPDATE ON encomendas
 BEGIN
-    UPDATE encomendas 
-    SET atualizado_em = GETDATE()
-    WHERE id IN (SELECT id FROM inserted);
+    UPDATE encomendas
+    SET atualizado_em = CURRENT_TIMESTAMP
+    WHERE id = NEW.id;
 END;
 
-
-
 CREATE TABLE itens_encomenda (
-    id INT IDENTITY(1,1) PRIMARY KEY,
-    encomenda_id INT NOT NULL,
-    produto_id INT NULL,
-    quantidade INT NOT NULL CHECK (quantidade > 0),
-    preco_unit_cents INT NOT NULL,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    encomenda_id INTEGER NOT NULL,
+    produto_id INTEGER,
+    quantidade INTEGER NOT NULL CHECK (quantidade > 0),
+    preco_unit_cents INTEGER NOT NULL,
     FOREIGN KEY (encomenda_id) REFERENCES encomendas(id) ON DELETE CASCADE,
     FOREIGN KEY (produto_id) REFERENCES produtos(id) ON DELETE SET NULL
 );
 
-
-
 CREATE TABLE notificacoes (
-    id INT IDENTITY(1,1) PRIMARY KEY,
-    utilizador_id INT,
-    tipo VARCHAR(100) NOT NULL,
-    conteudo VARCHAR(2000),
-    lida BIT NOT NULL DEFAULT 0,
-    criado_em DATETIME NOT NULL DEFAULT GETDATE(),
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    utilizador_id INTEGER,
+    tipo TEXT NOT NULL,
+    conteudo TEXT,
+    lida INTEGER NOT NULL DEFAULT 0,
+    criado_em TEXT DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (utilizador_id) REFERENCES utilizadores(id) ON DELETE CASCADE
 );
 
-
-
 CREATE TABLE historico_produtos (
-    id INT IDENTITY(1,1) PRIMARY KEY,
-    produto_id INT NULL,
-    acao VARCHAR(100) NOT NULL,
-    alterado_por INT NULL,
-    valores_antigos VARCHAR(2000),
-    valores_novos VARCHAR(2000),
-    criado_em DATETIME NOT NULL DEFAULT GETDATE(),
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    produto_id INTEGER,
+    acao TEXT NOT NULL,
+    alterado_por INTEGER,
+    valores_antigos TEXT,
+    valores_novos TEXT,
+    criado_em TEXT DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (produto_id) REFERENCES produtos(id) ON DELETE SET NULL,
     FOREIGN KEY (alterado_por) REFERENCES utilizadores(id) ON DELETE SET NULL
 );
 
-
 CREATE TABLE configuracoes (
-    chave VARCHAR(255) PRIMARY KEY,
-    valor VARCHAR(2000)
+    chave TEXT PRIMARY KEY,
+    valor TEXT
 );
 
 
