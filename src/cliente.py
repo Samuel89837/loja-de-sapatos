@@ -410,6 +410,20 @@ def remover_do_carrinho():
 
 
 def alterar_quantidade_carrinho():
+    """
+    Altera a quantidade de um item já existente no carrinho,
+    verificando se existe stock suficiente.
+
+    Args:
+        None
+
+    Returns:
+        None
+
+    Raises:
+        ValueError: Se o produto não existir ou não houver stock suficiente.
+    """
+
     pid = input("Produto: ")
     qtd = int(input("Nova quantidade: "))
 
