@@ -137,3 +137,9 @@ INSERT INTO utilizadores (nome, email, password)
 VALUES 
 ('Daniel Gatinhos', 'danielmiau@gmail.com', 'miau1234'),
 ('Maria Alberta', 'maria@gmail.com', 'maria123');
+
+
+INSERT INTO categorias (nome, descricao) 
+VALUES
+('Sapatos Homem', 'Calçado masculino'),
+('Sapatos Mulher', 'Calçado feminino');
