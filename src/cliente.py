@@ -461,6 +461,16 @@ def alterar_quantidade_carrinho():
 
 
 def total_carrinho():
+    """
+    Calcula o valor total dos itens presentes no carrinho.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
+
     con = conectar()
     cur = con.cursor()
 
