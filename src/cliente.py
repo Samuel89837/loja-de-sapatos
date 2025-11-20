@@ -202,7 +202,7 @@ def produtos_relacionados():
     con.close()
 
 
-def ver_carrinho(uid):
+def ver_carrinho():
     con = conectar()
     cur = con.cursor()
 
@@ -210,8 +210,8 @@ def ver_carrinho(uid):
         SELECT p.titulo, i.quantidade, p.preco_cents 
         FROM itens_carrinho i
         JOIN produtos p ON p.id = i.produto_id
-        WHERE i.utilizador_id = ?
-    """, (uid,))
+        WHERE i.utilizador_id = 1
+    """)
 
     itens = cur.fetchall()
 
@@ -223,6 +223,7 @@ def ver_carrinho(uid):
             print(f"{item[0]} - {item[1]} unidades - {item[2]/100:.2f}€")
 
     con.close()
+
 
 
 def adicionar_ao_carrinho(uid):
