@@ -226,7 +226,7 @@ def ver_carrinho():
 
 
 
-def adicionar_ao_carrinho(uid):
+def adicionar_ao_carrinho():
     pid = input("ID do produto: ")
     qtd = int(input("Quantidade: "))
 
@@ -236,8 +236,8 @@ def adicionar_ao_carrinho(uid):
     try:
         cur.execute("""
             INSERT INTO itens_carrinho (utilizador_id, produto_id, quantidade)
-            VALUES (?, ?, ?)
-        """, (uid, pid, qtd))
+            VALUES (1, ?, ?)
+        """, (pid, qtd))
 
         con.commit()
         print("Produto adicionado!")
@@ -245,6 +245,7 @@ def adicionar_ao_carrinho(uid):
         print("Erro ao adicionar. Talvez já esteja no carrinho.")
 
     con.close()
+
 
 
 def remover_do_carrinho(uid):
