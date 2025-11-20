@@ -33,6 +33,17 @@ def autenticar_admin():
 
 
 def menu_admin():
+    """
+    Apresenta o menu do administrador e encaminha a escolha
+    para as funções respetivas.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
+    
     if not autenticar_admin():
         return
 
