@@ -152,6 +152,15 @@ def ver_detalhes_produto():
 
 
 def filtrar_produtos():
+    """
+    Filtra e apresenta produtos dentro de um intervalo de preços.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
 
     minimo = int(input("Preço mínimo (centimos): "))
     maximo = int(input("Preço máximo (centimos): "))
