@@ -1,38 +1,63 @@
 def menu_cliente():
     while True:
-        print("\n--- Menu Cliente ---")
+        print("\n===== MENU CLIENTE =====")
         print("1 - Ver catálogo")
-        print("2 - Adicionar produto ao carrinho")
-        print("3 - Ver carrinho")
-        print("4 - Remover do carrinho")
-        print("5 - Filtrar produtos por preço")
-        print("6 - Finalizar compra")
-        print("0 - Voltar")
-        opcao = input("Escolha: ")
+        print("2 - Procurar produto")
+        print("3 - Ver detalhes de um produto")
+        print("4 - Filtrar produtos por preço")
+        print("5 - Ver produtos por categoria")
+        print("6 - Ver produtos relacionados")
+        print("7 - Ver carrinho")
+        print("8 - Adicionar produto ao carrinho")
+        print("9 - Remover produto do carrinho")
+        print("10 - Alterar quantidade no carrinho")
+        print("11 - Ver total da compra")
+        print("12 - Finalizar compra")
+        print("0 - Voltar ao menu principal")
+
+        opcao = input("Escolha uma opção: ")
 
         if opcao == "1":
             ver_catalogo()
 
         elif opcao == "2":
-            adicionar_ao_carrinho()
+            procurar_produto()
 
         elif opcao == "3":
-            ver_carrinho()
+            ver_detalhes_produto()
 
         elif opcao == "4":
-            remover_do_carrinho()
-
-        elif opcao == "5":
             filtrar_produtos()
 
+        elif opcao == "5":
+            ver_por_categoria()
+
         elif opcao == "6":
+            produtos_relacionados()
+
+        elif opcao == "7":
+            ver_carrinho()
+
+        elif opcao == "8":
+            adicionar_ao_carrinho()
+
+        elif opcao == "9":
+            remover_do_carrinho()
+
+        elif opcao == "10":
+            alterar_quantidade_carrinho()
+
+        elif opcao == "11":
+            total_carrinho()
+
+        elif opcao == "12":
             finalizar_compra()
 
         elif opcao == "0":
             break
 
         else:
-            print("Opção inválida! Tente novamente.")
+            print("Opção inválida, tente novamente!")
 
 
 
