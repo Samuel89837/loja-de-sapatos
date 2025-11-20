@@ -286,8 +286,45 @@ def menu_cliente():
         con.close()
 
     
-    def finalizar_compra():
-        print(" Compra finalizada com sucesso!")
+    def finalizar_compra(uid):
+        con = conectar()
+        cur = con.cursor()
+
+        # total
+        cur.execute("""
+            SELECT SUM(quantidade * preco_cents)
+            FROM itens_carrinho i
+            JOIN produtos p ON p.id = i.produto_id
+            WHERE i.utilizador_id = ?
+        """, (uid,))
+        total = cur.fetchone()[0]
+
+        if not total:
+            print("Carrinho vazio!")
+            return
+
+        # criar encomenda
+        cur.execute("""
+            INSERT INTO encomendas (utilizador_id, estado, total_cents)
+            VALUES (?, 'pendente', ?)
+        """, (uid, total))
+        encomenda_id = cur.lastrowid
+
+        # gerar itens_encomenda
+        cur.execute("""
+            INSERT INTO itens_encomenda (encomenda_id, produto_id, quantidade, preco_unit_cents)
+            SELECT ?, produto_id, quantidade, preco_cents
+            FROM itens_carrinho
+            JOIN produtos ON produtos.id = itens_carrinho.produto_id
+            WHERE utilizador_id = ?
+        """, (encomenda_id, uid))
+
+        # limpar carrinho
+        cur.execute("DELETE FROM itens_carrinho WHERE utilizador_id = ?", (uid,))
+        con.commit()
+
+        print(f"Compra finalizada! Encomenda #{encomenda_id}")
+        con.close()
 
 
 
