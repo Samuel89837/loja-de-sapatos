@@ -16,3 +16,18 @@ Este projeto foi desenvolvido no âmbito da unidade curricular **Ambientes de De
 - Remover ou alterar quantidades  
 - Ver total da compra  
 - Finalizar encomenda
+
+
+
+### Administrador
+- Login com credenciais definidas no código  
+- Adicionar produtos  
+- Editar produtos  
+- Remover produtos  
+- Ativar/Desativar produtos  
+- Adicionar categorias  
+- Ver encomendas pendentes  
+- Ver histórico de alterações  
+- Ver total de stock  
+- Ver vendas diárias  
+- Consultar utilizadores  
