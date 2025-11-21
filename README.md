@@ -31,3 +31,10 @@ Este projeto foi desenvolvido no âmbito da unidade curricular **Ambientes de De
 - Ver total de stock  
 - Ver vendas diárias  
 - Consultar utilizadores  
+
+
+
+### Requisitos
+- Python 3.10+  
+- Git  
+- (Opcional) VS Code com extensões: Python, SQLite Viewer
