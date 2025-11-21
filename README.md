@@ -33,8 +33,14 @@ Este projeto foi desenvolvido no âmbito da unidade curricular **Ambientes de De
 - Consultar utilizadores  
 
 
+## 2. Instalação
 
 ### Requisitos
 - Python 3.10+  
 - Git  
 - (Opcional) VS Code com extensões: Python, SQLite Viewer
+
+
+### Obter o projeto
+```bash
+git clone https://github.com/Samuel89837/loja-de-sapatos.git
